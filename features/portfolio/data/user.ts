@@ -30,9 +30,8 @@ export const USER: User = {
       experienceId: "your-company",
     },
   ],
-  about: `- I'm Jordan — a Software Engineer who cares about pixel-perfect execution and clean code.
-- Passionate about exploring new technologies and turning ideas into polished, thoughtfully crafted products.
-- This is placeholder content — replace it in \`features/portfolio/data/user.ts\`.
+  about: `- I'm Santhoshkumar Sakthivel (SanS) — a Software Engineer with 4+ years of experience building clean, fast, and interactive web applications.
+- Curious by nature, I enjoy exploring new technologies and turning that curiosity into practical, real-world solutions.
 `,
   avatar: "https://avatar.vercel.sh/jordan",
   avatarVariants: {

@@ -45,14 +45,14 @@ export const SOCIAL = {
   },
   instagram: {
     title: "Instagram",
-    handle: "@yourhandle",
-    href: "https://instagram.com/yourhandle",
+    handle: "@sansovert",
+    href: "https://instagram.com/sansovert",
     sameAs: true,
   },
   reddit: {
     title: "Reddit",
-    handle: "u/yourhandle",
-    href: "https://reddit.com/user/yourhandle",
+    handle: "u/sansovert",
+    href: "https://reddit.com/user/sansovert",
     sameAs: true,
   },
 } satisfies Record<string, SocialProfile>
