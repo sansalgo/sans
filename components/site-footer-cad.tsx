@@ -1,13 +1,13 @@
 import Link from "next/link"
 
-import { LICENSE, SITE_INFO, SOURCE_CODE_GITHUB_URL } from "@/config/site"
-import type { BuildInfo } from "@/lib/build-info"
-import { getBuildInfo, getStack } from "@/lib/build-info"
-import { cn } from "@/lib/utils"
 import { Separator } from "@/components/base/ui/separator"
 import { DmcaIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
 import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
+import { LICENSE, SOURCE_CODE_GITHUB_URL } from "@/config/site"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
+import type { BuildInfo } from "@/lib/build-info"
+import { getBuildInfo, getStack } from "@/lib/build-info"
+import { cn } from "@/lib/utils"
 
 // Imported here rather than through `@/config/site`, which client components
 // pull in, to keep the manifest out of client bundles.
@@ -26,7 +26,7 @@ const INSPIRED_BY = [
 
 const OPENPANEL_URL = "https://openpanel.dev/open-source"
 
-const SITE_TITLE = SITE_INFO.name
+const SITE_TITLE = packageJson.name
 
 const SITE_SUBTITLE = packageJson.description
 

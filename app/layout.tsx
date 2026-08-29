@@ -12,7 +12,6 @@ import { META_THEME_COLORS, SITE_INFO, X_HANDLE } from "@/config/site"
 import { fontVariables } from "@/lib/fonts"
 import { JsonLdScript } from "@/lib/json-ld"
 import { Providers } from "@/components/providers"
-import { SiteBottomNav } from "@/components/site-bottom-nav"
 import { SiteFooterCad } from "@/components/site-footer-cad"
 import { SiteHeader } from "@/components/site-header"
 import { USER } from "@/features/portfolio/data/user"
@@ -172,7 +171,6 @@ export default function RootLayout({
                 <div className="h-(--fade-bottom-height) bg-linear-to-b from-transparent to-background mask-linear-[to_top,var(--background)_25%,transparent] backdrop-blur-[1px]" />
                 <div className="bg-background pb-[env(safe-area-inset-bottom,0)]" />
               </div>
-              <SiteBottomNav />
               <ScrollToTop />
             </div>
           </NuqsAdapter>

@@ -1,5 +1,7 @@
 import type { User } from "@/features/portfolio/types/user"
 
+import { shuffledSpinnerVerbs } from "./spinner-verbs"
+
 /**
  * Placeholder profile data. This is a fresh fork of chanhdai.com's layout —
  * swap every field below for your own details before publishing.
@@ -12,17 +14,12 @@ export const USER: User = {
   gender: "male",
   pronouns: "he/him",
   bio: "Building things for the web. Small details matter.",
-  flipSentences: [
-    "Building things for the web. Small details matter.",
-    "Software Engineer.",
-    "Open source contributor.",
-    "Always shipping something.",
-  ],
+  flipSentences: shuffledSpinnerVerbs,
   address: "Tiruppur, Tamil Nadu",
   // Base64-encoded values — encode/decode via
   // https://t.io.vn/base64-string-converter
   phoneNumberB64: "KzkxOTM2MTc0NjU2Ng==",
-  emailB64: "aGVsbG9AZXhhbXBsZS5jb20=", // hello@example.com — replace with yours
+  emailB64: "c2Fuc0BzYW5zb3JpZ2luLmNvbQ", // hello@example.com — replace with yours
   website: "http://sans.sansorigin.com",
   jobTitle: "Software Engineer",
   jobs: [

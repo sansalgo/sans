@@ -8,20 +8,20 @@ import type { SocialProfile } from "@/features/portfolio/types/social-links"
 export const SOCIAL = {
   x: {
     title: "X",
-    handle: "@yourhandle",
-    href: "https://x.com/yourhandle",
+    handle: "@sansovert",
+    href: "https://x.com/sansovert",
     sameAs: true,
   },
   github: {
     title: "GitHub",
-    handle: "yourhandle",
-    href: "https://github.com/yourhandle",
+    handle: "sansalgo",
+    href: "https://github.com/sansalgo",
     sameAs: true,
   },
   linkedin: {
     title: "LinkedIn",
-    handle: "yourhandle",
-    href: "https://linkedin.com/in/yourhandle",
+    handle: "sansovert",
+    href: "https://linkedin.com/in/sansovert",
     sameAs: true,
   },
   dailydotdev: {
@@ -29,16 +29,30 @@ export const SOCIAL = {
     handle: "@yourhandle",
     href: "https://app.daily.dev/yourhandle",
     sameAs: true,
+    hidden: true,
   },
   discord: {
     title: "Discord",
-    handle: "yourhandle",
-    href: "https://discord.com",
+    handle: "sansovert",
+    href: "https://discord.com/users/1541459461908992072",
   },
   youtube: {
     title: "YouTube",
     handle: "@yourhandle",
     href: "https://www.youtube.com/@yourhandle",
+    sameAs: true,
+    hidden: true,
+  },
+  instagram: {
+    title: "Instagram",
+    handle: "@yourhandle",
+    href: "https://instagram.com/yourhandle",
+    sameAs: true,
+  },
+  reddit: {
+    title: "Reddit",
+    handle: "u/yourhandle",
+    href: "https://reddit.com/user/yourhandle",
     sameAs: true,
   },
 } satisfies Record<string, SocialProfile>
@@ -49,4 +63,6 @@ export type SocialLink = SocialProfile & { name: SocialName }
 
 export const SOCIAL_LINKS: SocialLink[] = (
   Object.entries(SOCIAL) as [SocialName, SocialProfile][]
-).map(([name, profile]) => ({ name, ...profile }))
+)
+  .map(([name, profile]) => ({ name, ...profile }))
+  .filter((link) => !link.hidden)
