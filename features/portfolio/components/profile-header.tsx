@@ -5,8 +5,13 @@ import { IsometricMark } from "@/components/isometric-mark"
 
 import { AvatarLightsToggle } from "./avatar-lights-toggle"
 import { FlipSentences } from "./flip-sentences"
-import { ResponsiveName } from "./responsive-name"
+import {
+  ResponsiveName,
+  ResponsiveNameInlineScript,
+} from "./responsive-name"
 import { VerifiedIcon } from "./verified-icon"
+
+const NAME_ID = "profile-name"
 
 const NAME_VARIANTS = [
   USER.displayName,
@@ -41,11 +46,16 @@ export function ProfileHeader() {
         <div className="z-1 mt-auto border-t border-line">
           <div className="flex items-center gap-2 pl-4">
             <ResponsiveName
+              id={NAME_ID}
               variants={NAME_VARIANTS}
               className="relative min-w-0 -translate-y-px text-[2rem]/none font-medium tracking-tight"
             />
 
             <VerifiedIcon className="size-4.5 select-none" aria-hidden />
+
+            {/* Must render after every sibling above so the pre-hydration
+                measurement sees the full row's width (see responsive-name.tsx). */}
+            <ResponsiveNameInlineScript id={NAME_ID} variants={NAME_VARIANTS} />
           </div>
 
           <FlipSentences className="h-12.5 border-t border-line py-1 pl-4 sm:h-9">
