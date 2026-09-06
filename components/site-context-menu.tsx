@@ -1,7 +1,6 @@
 "use client"
 
 import { copyText } from "@/utils/copy"
-import { useTiks } from "@rexa-developer/tiks/react"
 import { Type } from "lucide-react"
 import { toast } from "sonner"
 
@@ -16,8 +15,6 @@ import { getMarkSVG, SiteMark } from "./site-mark"
 import { getWordmarkSVG } from "./site-wordmark"
 
 export function SiteContextMenu({ children }: { children: React.ReactNode }) {
-  const { success } = useTiks()
-
   return (
     <ContextMenu>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
@@ -27,7 +24,6 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
           onClick={() => {
             copyText(getMarkSVG())
             toast.success("Mark as SVG copied")
-            success()
           }}
         >
           <SiteMark />
@@ -38,7 +34,6 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
           onClick={() => {
             copyText(getWordmarkSVG())
             toast.success("Logotype as SVG copied")
-            success()
           }}
         >
           <Type />

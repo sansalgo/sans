@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { copyToClipboardWithEvent } from "@/utils/copy"
 import { useRouter } from "@bprogress/next/app"
-import { useTiks } from "@rexa-developer/tiks/react"
 import {
   BookmarkIcon,
   BoxIcon,
@@ -134,8 +133,6 @@ export function CommandMenu({
   const [selectedCommandKind, setSelectedCommandKind] =
     useState<CommandKind | null>(null)
 
-  const { success: tiksSuccess } = useTiks()
-
   useHotkeys(
     "mod+k, slash",
     (e) => {
@@ -190,9 +187,8 @@ export function CommandMenu({
         },
       })
       toast.success(message)
-      tiksSuccess()
     },
-    [tiksSuccess]
+    []
   )
 
   const createThemeHandler = useCallback(

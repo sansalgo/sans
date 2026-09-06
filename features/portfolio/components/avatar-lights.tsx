@@ -55,7 +55,7 @@ export function AvatarLights({
       </AvatarLayer>
 
       <div
-        className="pointer-events-none absolute inset-0 rounded-full inset-ring-1 inset-ring-foreground/10"
+        className="pointer-events-none absolute inset-0 rounded-full inset-ring-1 inset-ring-line"
         aria-hidden
       />
     </div>

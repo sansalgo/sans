@@ -5,12 +5,20 @@ import { IsometricMark } from "@/components/isometric-mark"
 
 import { AvatarLightsToggle } from "./avatar-lights-toggle"
 import { FlipSentences } from "./flip-sentences"
+import { ResponsiveName } from "./responsive-name"
 import { VerifiedIcon } from "./verified-icon"
+
+const NAME_VARIANTS = [
+  USER.displayName,
+  `${USER.firstName} ${USER.lastName.charAt(0)}`,
+  USER.firstName,
+  "Santhosh",
+]
 
 export function ProfileHeader() {
   return (
     <div className="screen-line-bottom grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] overflow-y-clip border-x border-line">
-      <figure className="relative col-span-2 p-2 sm:col-span-1 sm:col-start-2 sm:p-4">
+      <figure className="relative col-span-2 p-2 sm:p-4">
         <IsometricMark />
 
         <figcaption className="pointer-events-none absolute right-2 bottom-2 text-sm leading-none tracking-wide text-[color-mix(in_oklab,var(--muted-foreground)_60%,var(--background))] tabular-nums select-none sm:right-4 sm:bottom-4">
@@ -18,7 +26,7 @@ export function ProfileHeader() {
         </figcaption>
       </figure>
 
-      <div className="flex flex-col sm:row-span-2 sm:row-start-1">
+      <div className="flex flex-col">
         <div className="screen-line-top mt-auto shrink-0 border-r border-line">
           <AvatarLightsToggle className="group/avatar-lights-toggle mx-0.5 my-0.75 flex outline-none">
             <AvatarLights
@@ -29,12 +37,13 @@ export function ProfileHeader() {
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex min-w-0 flex-col">
         <div className="z-1 mt-auto border-t border-line">
           <div className="flex items-center gap-2 pl-4">
-            <h1 className="-translate-y-px text-[2rem]/none font-medium tracking-tight">
-              {USER.displayName}
-            </h1>
+            <ResponsiveName
+              variants={NAME_VARIANTS}
+              className="relative min-w-0 -translate-y-px text-[2rem]/none font-medium tracking-tight"
+            />
 
             <VerifiedIcon className="size-4.5 select-none" aria-hidden />
           </div>

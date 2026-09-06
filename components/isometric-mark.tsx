@@ -1,163 +1,152 @@
 "use client"
 
-import { useEffect, useId, useRef } from "react"
-import type { Transition } from "motion/react"
-import {
-  motion,
-  useInView,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from "motion/react"
+import { useId, useRef, useState, type PointerEvent as ReactPointerEvent } from "react"
 
-const transition: Transition = {
-  type: "spring",
-  mass: 0.5,
-  damping: 18,
-  stiffness: 200,
-}
+import { BOUNDS, GLOW_RADIUS, INTERIOR_EDGES, RENDER_GLYPHS } from "@/lib/iso-mark"
 
-/** A simple isometric cube with mouse-tracked lighting. */
+/**
+ * The isometric mark, rendered as its underlying slabs with a hover x-ray: moving the
+ * pointer over it reveals the seams between the mark's original unit cells and traces
+ * a light that follows the cursor along the mark's edges.
+ */
 export function IsometricMark() {
-  const id = useId()
-  const ids = {
-    facePattern: `isometric-face-pattern-${id}`,
-    stroke: `isometric-stroke-${id}`,
-    radialGradient: `isometric-radial-gradient-${id}`,
+  const svgRef = useRef<SVGSVGElement>(null)
+  const hatchId = useId()
+  const glowId = useId()
+  const [glow, setGlow] = useState({ x: 0, y: 0, active: false })
+
+  const toLocalPoint = (clientX: number, clientY: number) => {
+    const svg = svgRef.current
+    const ctm = svg?.getScreenCTM()
+    if (!svg || !ctm) return null
+    const point = svg.createSVGPoint()
+    point.x = clientX
+    point.y = clientY
+    const local = point.matrixTransform(ctm.inverse())
+    return { x: local.x, y: local.y }
   }
 
-  const ref = useRef<SVGSVGElement>(null)
+  const handlePointerEnter = (event: ReactPointerEvent<SVGSVGElement>) => {
+    const local = toLocalPoint(event.clientX, event.clientY)
+    setGlow((current) => ({ x: local?.x ?? current.x, y: local?.y ?? current.y, active: true }))
+  }
 
-  const shouldReduceMotion = useReducedMotion()
-  const isInView = useInView(ref, { margin: "80px" })
+  const handlePointerMove = (event: ReactPointerEvent<SVGSVGElement>) => {
+    const local = toLocalPoint(event.clientX, event.clientY)
+    if (!local) return
+    setGlow({ x: local.x, y: local.y, active: true })
+  }
 
-  const mouseX = useMotionValue(0.5)
-  const mouseY = useMotionValue(0.5)
-
-  const cx = useSpring(useTransform(mouseX, [0, 1], [0, 300]), {
-    stiffness: 300,
-    damping: 30,
-    mass: 0.1,
-  })
-
-  const cy = useSpring(useTransform(mouseY, [0, 1], [0, 260]), {
-    stiffness: 300,
-    damping: 30,
-    mass: 0.1,
-  })
-
-  useEffect(() => {
-    if (shouldReduceMotion || !isInView) {
-      return
-    }
-
-    if (window.matchMedia("(hover: none)").matches) {
-      return
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX / window.innerWidth)
-      mouseY.set(e.clientY / window.innerHeight)
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [shouldReduceMotion, isInView, mouseX, mouseY])
+  const handlePointerLeave = () => {
+    setGlow((current) => ({ ...current, active: false }))
+  }
 
   return (
-    <motion.svg
-      ref={ref}
-      className="h-auto w-full touch-manipulation overflow-visible [--pattern:color-mix(in_oklab,var(--foreground)_12%,var(--background))] [--stroke:color-mix(in_oklab,var(--foreground)_16%,var(--background))]"
-      viewBox="0 0 300 260"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <svg
+      ref={svgRef}
+      className="h-auto w-full touch-manipulation overflow-visible [--pattern:color-mix(in_oklab,var(--foreground)_12%,var(--background))] [--stroke:color-mix(in_oklab,var(--foreground)_22%,var(--background))]"
+      viewBox={`${BOUNDS.minX} ${BOUNDS.minY} ${BOUNDS.width} ${BOUNDS.height}`}
+      onPointerEnter={handlePointerEnter}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       aria-hidden
-      initial="normal"
-      whileTap="pressed"
     >
       <defs>
-        <pattern
-          id={ids.facePattern}
-          x="0"
-          y="0"
-          width="10"
-          height="10"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M-1 1l2 -2M0 10l10 -10M9 11l2 -2"
-            stroke="var(--pattern)"
-            strokeWidth="1"
-          />
+        <pattern id={hatchId} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="5" height="5" fill="var(--background)" />
+          <line x1="0" y1="0" x2="0" y2="5" stroke="var(--pattern)" strokeWidth="1" />
         </pattern>
-
-        <motion.radialGradient
-          id={ids.radialGradient}
-          cx={cx}
-          cy={cy}
-          r="160"
+        <radialGradient
+          id={glowId}
           gradientUnits="userSpaceOnUse"
+          cx={glow.x}
+          cy={glow.y}
+          r={GLOW_RADIUS}
         >
+          <stop offset="0%" className="dark:[stop-color:#fff]" stopColor="var(--color-zinc-700)" />
           <stop
-            className="dark:[stop-color:#fff]"
-            stopColor="var(--color-zinc-700)"
-          />
-          <stop
+            offset="100%"
             className="dark:[stop-color:var(--color-zinc-600)]"
-            offset="1"
             stopColor="var(--color-zinc-400)"
             stopOpacity="0"
           />
-        </motion.radialGradient>
+        </radialGradient>
       </defs>
 
-      <g className="stroke-line" strokeWidth="1" strokeDasharray="4 2">
-        <path d="M-200 400L500 -140" />
-        <path d="M550 420L-150 -120" />
-      </g>
-
-      <motion.g
-        variants={{
-          normal: { transform: "translate(0px, 0px)" },
-          pressed: { transform: "translate(0px, 10px)" },
-        }}
-        transition={transition}
-      >
-        {/* Top face */}
-        <path
-          className="fill-background"
-          d="M150 20 L270 90 L150 160 L30 90 Z"
-        />
-        <path d="M150 20 L270 90 L150 160 L30 90 Z" fill={`url(#${ids.facePattern})`} />
-
-        {/* Left face */}
-        <path className="fill-background" d="M30 90 L150 160 L150 240 L30 170 Z" />
-        {/* Right face */}
-        <path
-          className="fill-background"
-          d="M270 90 L150 160 L150 240 L270 170 Z"
-        />
-      </motion.g>
-
-      <motion.path
-        id={ids.stroke}
-        variants={{
-          normal: {
-            d: "M150 20 L270 90 L270 170 L150 240 L30 170 L30 90 Z M150 20 L150 160 M30 90 L150 160 L270 90",
-          },
-          pressed: {
-            d: "M150 30 L270 100 L270 170 L150 240 L30 170 L30 100 Z M150 30 L150 160 M30 100 L150 160 L270 100",
-          },
-        }}
-        transition={transition}
+      <rect
+        x={BOUNDS.minX}
+        y={BOUNDS.minY}
+        width={BOUNDS.width}
+        height={BOUNDS.height}
+        fill="var(--background)"
       />
 
-      <use href={`#${ids.stroke}`} stroke="var(--stroke)" />
-      <use href={`#${ids.stroke}`} stroke={`url(#${ids.radialGradient})`} />
-    </motion.svg>
+      {RENDER_GLYPHS.map((glyph) => (
+        <g key={glyph.key}>
+          {glyph.wallFaces.map((face) => (
+            <path
+              key={face.key}
+              d={face.d}
+              fill="var(--background)"
+              stroke="var(--stroke)"
+              strokeWidth="1"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
+          ))}
+          <path
+            d={glyph.topPath}
+            fillRule="evenodd"
+            fill={`url(#${hatchId})`}
+            stroke="var(--stroke)"
+            strokeWidth="1"
+            strokeLinejoin="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        </g>
+      ))}
+
+      <g className="transition-opacity duration-400" style={{ opacity: glow.active ? 1 : 0 }}>
+        {INTERIOR_EDGES.map((edge) => (
+          <path
+            key={edge.key}
+            d={edge.d}
+            fill="none"
+            stroke="var(--stroke)"
+            strokeWidth="0.75"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        ))}
+      </g>
+
+      <g className="transition-opacity duration-350" style={{ opacity: glow.active ? 1 : 0 }}>
+        {RENDER_GLYPHS.map((glyph) => (
+          <g key={`${glyph.key}-glow`}>
+            {glyph.wallFaces.map((face) => (
+              <path
+                key={`${face.key}-glow`}
+                d={face.d}
+                fill="none"
+                stroke={`url(#${glowId})`}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            ))}
+            <path
+              d={glyph.topPath}
+              fill="none"
+              stroke={`url(#${glowId})`}
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
+          </g>
+        ))}
+      </g>
+    </svg>
   )
 }

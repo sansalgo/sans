@@ -12,7 +12,7 @@ export function SiteHeader() {
       <div className="screen-line-top screen-line-bottom mx-auto flex h-(--header-height) items-center gap-2 border border-line px-2 group-has-data-[slot=layout-wide]/layout:container after:z-1 after:bg-border sm:gap-4 md:max-w-3xl">
         <SiteContextMenu>
           <Link href="/" aria-label="Home">
-            <SiteMark className="h-8 shrink-0 px-1.5" />
+            <SiteMark className="h-6 shrink-0 px-1.5" />
           </Link>
         </SiteContextMenu>
 

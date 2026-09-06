@@ -2,7 +2,6 @@ import Link from "next/link"
 
 import { Separator } from "@/components/base/ui/separator"
 import { DmcaIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
-import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
 import { LICENSE, SOURCE_CODE_GITHUB_URL } from "@/config/site"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 import type { BuildInfo } from "@/lib/build-info"
@@ -74,7 +73,12 @@ export function SiteFooterCad() {
               <time dateTime={build.date}>{build.date}</time>
             </Field>
 
-            <Field label="Deployed on">Vercel</Field>
+            <Field label="Deployed on">
+              <span className="font-sans" aria-hidden="true">
+                ▲
+              </span>
+              <span className="sr-only">Vercel</span>
+            </Field>
 
             <Field label="Source code">
               <a
@@ -151,7 +155,10 @@ export function SiteFooterCad() {
         <div className="screen-line-top h-4" />
 
         <div className="screen-line-top screen-line-bottom flex items-center gap-3 px-4 py-3 text-muted-foreground">
-          <Link href="/" className="mr-auto text-foreground">
+          <Link
+            href="/"
+            className="mr-auto flex items-center transition-[color] hover:text-foreground"
+          >
             <SiteMark className="h-4" />
           </Link>
 
@@ -215,7 +222,8 @@ export function SiteFooterCad() {
         </div>
       </div>
 
-      <SiteFooterInteractiveLogotype />
+      {/* TODO: placeholder for the half-cropped SANS mark, replacing the old text logotype */}
+      <div className="h-16" />
 
       <div className="h-(--fade-bottom-height)" />
       <div className="pb-[env(safe-area-inset-bottom,0)]" />

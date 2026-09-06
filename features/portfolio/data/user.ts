@@ -24,23 +24,23 @@ export const USER: User = {
   jobTitle: "Software Engineer",
   jobs: [
     {
-      title: "Software Engineer",
+      title: "Senior Developer",
       company: "Webchirpy",
-      website: "https://example.com",
-      experienceId: "your-company",
+      website: "https://webchirpy.com",
+      experienceId: "webchirpy",
     },
   ],
   about: `- I'm Santhoshkumar Sakthivel (SanS) — a Software Engineer with 4+ years of experience building clean, fast, and interactive web applications.
 - Curious by nature, I enjoy exploring new technologies and turning that curiosity into practical, real-world solutions.
 `,
-  avatar: "https://avatar.vercel.sh/jordan",
+  avatar: "/s-profile-light-off.png",
   avatarVariants: {
-    lightOff: "https://avatar.vercel.sh/jordan",
-    lightOn: "https://avatar.vercel.sh/jordan",
-    darkOff: "https://avatar.vercel.sh/jordan",
-    darkOn: "https://avatar.vercel.sh/jordan",
+    lightOff: "/s-profile-light-off.png",
+    lightOn: "/s-profile-light-on.png",
+    darkOff: "/s-profile-dark-off.png",
+    darkOn: "/s-profile-dark-on.png",
   },
-  ogImage: "https://avatar.vercel.sh/jordan",
+  ogImage: "/s-profile-light-off.png",
   timeZone: "Asia/Calcutta",
   keywords: ["jordan rivera", "software engineer", "portfolio"],
   dateCreated: "2026-01-01",

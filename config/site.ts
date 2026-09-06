@@ -12,11 +12,6 @@ export const SITE_INFO = {
   keywords: USER.keywords,
 }
 
-export const LICENSE = {
-  name: "MIT License",
-  url: "https://github.com/ncdai/chanhdai.com/blob/main/LICENSE",
-}
-
 export const META_THEME_COLORS = {
   light: "#ffffff",
   dark: "#09090b",
@@ -37,8 +32,13 @@ export const MOBILE_NAV: NavItem<Route>[] = [
 export const X_HANDLE = SOCIAL.x.handle
 export const GITHUB_USERNAME = SOCIAL.github.handle
 // Placeholders — point these at your own repo once you publish this fork.
-export const SOURCE_CODE_GITHUB_REPO = "your-username/your-repo"
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/your-username/your-repo"
+export const SOURCE_CODE_GITHUB_REPO = "sansalgo/sans"
+export const SOURCE_CODE_GITHUB_URL = "https://github.com/sansalgo/sans"
+
+export const LICENSE = {
+  name: "MIT License",
+  url: `${SOURCE_CODE_GITHUB_URL}/blob/main/LICENSE`,
+}
 
 export const UTM_PARAMS = {
   utm_source: SITE_INFO.url,

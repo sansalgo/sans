@@ -22,7 +22,7 @@ export function FlipSentences({
         interval={3}
         play={isPageInView && isInView}
       >
-        {children.map((sentence) => `${sentence}...`)}
+        {children.map((sentence) => `${sentence}`)}
       </TextFlip>
     </div>
   )

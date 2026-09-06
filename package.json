@@ -17,7 +17,6 @@
     "@bprogress/next": "^3.2.12",
     "@next/third-parties": "^16.3.2",
     "@openpanel/web": "^1.4.1",
-    "@rexa-developer/tiks": "^0.3.0",
     "@visx/curve": "^4.0.0",
     "@visx/event": "^4.0.0",
     "@visx/grid": "^4.0.0",
@@ -67,7 +66,7 @@
     "eslint-config-next": "16.2.6",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "4.3.3",
     "typescript": "^5"
   }
 }
