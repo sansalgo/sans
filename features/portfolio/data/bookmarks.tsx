@@ -1,13 +1,12 @@
 import { BookmarkCategory } from "@/features/portfolio/types/bookmarks"
 import type { Bookmark } from "@/features/portfolio/types/bookmarks"
 
-/** Placeholder bookmarks — replace with your own. */
 export const BOOKMARKS: Bookmark[] = [
   {
-    title: "Example Article",
-    url: "https://example.com",
-    author: "Author Name",
+    title: "A Clock That Doesn't Snap",
+    url: "https://ethanniser.com/blog/a-clock-that-doesnt-snap",
+    author: "Ethan Niser",
     category: BookmarkCategory.ARTICLE,
-    bookmarkedAt: "2026-01-01",
+    bookmarkedAt: "2026-09-06",
   },
 ]
