@@ -1,0 +1,31 @@
+.cc-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  font-size: 14px;
+}
+
+.cc-spinner__glyph {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cc-spinner__glyph--pulse {
+  animation: cc-spinner-pulse 2s ease-in-out infinite;
+}
+
+.cc-spinner__label {
+  font-weight: 500;
+}
+
+.cc-spinner__meta {
+  color: var(--cc-spinner-muted, #71717a);
+}
+
+@keyframes cc-spinner-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
