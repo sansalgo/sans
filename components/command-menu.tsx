@@ -7,9 +7,11 @@ import {
   BookmarkIcon,
   BoxIcon,
   BriefcaseBusinessIcon,
+  CircleCheckBigIcon,
   CornerDownLeftIcon,
   GraduationCapIcon,
   LayersIcon,
+  LayoutGridIcon,
   LineChartIcon,
   MonitorIcon,
   MoonStarIcon,
@@ -62,16 +64,28 @@ const MENU_LINKS: CommandLinkItem[] = [
     icon: <SiteMark />,
     shortcut: "GH",
   },
+  {
+    title: "Components",
+    href: "/components",
+    kind: "page",
+    icon: <LayoutGridIcon />,
+  },
 ]
 
-// Awards and Certifications are hidden on the homepage right now, so their
-// entries are left out here too — add them back if those sections return.
+// Awards is hidden on the homepage right now, so its entry is left out here
+// too — add it back if that section returns.
 const PORTFOLIO_LINKS: CommandLinkItem[] = [
   {
     title: "Hello",
     href: "/#hello",
     kind: "page",
     icon: <TextInitialIcon />,
+  },
+  {
+    title: "Components",
+    href: "/#components",
+    kind: "page",
+    icon: <LayoutGridIcon />,
   },
   {
     title: "Stack",
@@ -96,6 +110,12 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#projects",
     kind: "page",
     icon: <BoxIcon />,
+  },
+  {
+    title: "Certifications",
+    href: "/#certs",
+    kind: "page",
+    icon: <CircleCheckBigIcon />,
   },
   {
     title: "Bookmarks",

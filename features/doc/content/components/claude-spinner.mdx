@@ -1,0 +1,77 @@
+---
+title: Claude Spinner
+description: A reverse-engineered recreation of the Claude Code CLI's terminal spinner — animated glyph, status verb, elapsed time, and token counter.
+createdAt: 2026-09-13
+updatedAt: 2026-09-13
+---
+
+<ComponentPreview name="claude-spinner-demo" />
+
+## Features
+
+- Reverse-engineered from the Claude Code CLI binary — same glyph cycle, verb list, and color blending.
+- Elapsed time and an auto-incrementing token counter, both overridable.
+- Blends toward amber the longer a turn runs, and toward red when `stalled`.
+- Respects `prefers-reduced-motion`, with a `reducedMotion` prop to force it either way.
+
+## Installation
+
+<CodeTabs>
+
+<TabsListInstallType />
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @sans/claude-spinner
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Add a cn helper</Step>
+
+<ComponentSource src="lib/utils.ts" title="lib/utils.ts" collapsible="false" />
+
+<Step>Copy and paste the following code into your project</Step>
+
+<ComponentSource name="claude-spinner" title="components/ui/claude-spinner.tsx" />
+
+<ComponentSource
+  src="registry/components/claude-spinner/claude-spinner.css"
+  title="components/ui/claude-spinner.css"
+/>
+
+<Step>Update the import paths to match your project setup</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ClaudeSpinner } from "@/components/ui/claude-spinner"
+```
+
+```tsx
+<ClaudeSpinner />
+```
+
+## API reference
+
+### ClaudeSpinner
+
+<AutoTypeTable
+  path="registry/components/claude-spinner/claude-spinner.tsx"
+  name="ClaudeSpinnerProps"
+/>
+
+## References
+
+- [Claude Code](https://claude.com/product/claude-code) by Anthropic

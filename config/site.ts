@@ -17,9 +17,14 @@ export const META_THEME_COLORS = {
   dark: "#09090b",
 }
 
-// Components, Blocks, Blog, and Sponsors panels have been removed/hidden
-// from the homepage, so there are no top-level nav links right now.
-export const MAIN_NAV: NavItem<Route>[] = []
+// Blocks, Blog, and Sponsors panels have been removed/hidden from the
+// homepage, so there's no top-level nav link for them right now.
+export const MAIN_NAV: NavItem<Route>[] = [
+  {
+    title: "Components",
+    href: "/components",
+  },
+]
 
 export const MOBILE_NAV: NavItem<Route>[] = [
   {
