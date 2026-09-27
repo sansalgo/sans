@@ -15,6 +15,7 @@ import {
   LineChartIcon,
   MonitorIcon,
   MoonStarIcon,
+  NewspaperIcon,
   SunMediumIcon,
   TextInitialIcon,
   TypeIcon,
@@ -70,6 +71,13 @@ const MENU_LINKS: CommandLinkItem[] = [
     kind: "page",
     icon: <LayoutGridIcon />,
   },
+  {
+    title: "Blog",
+    href: "/blog",
+    kind: "page",
+    icon: <NewspaperIcon />,
+    shortcut: "GL",
+  },
 ]
 
 // Awards is hidden on the homepage right now, so its entry is left out here
@@ -86,6 +94,12 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#components",
     kind: "page",
     icon: <LayoutGridIcon />,
+  },
+  {
+    title: "Blog",
+    href: "/#blog",
+    kind: "page",
+    icon: <NewspaperIcon />,
   },
   {
     title: "Stack",

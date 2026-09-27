@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     async rewrites() {
         return [
             {
+                source: "/blog/:slug.md",
+                destination: "/doc.md/:slug",
+            },
+            {
                 source: "/components/:slug.md",
                 destination: "/doc.md/:slug",
             },

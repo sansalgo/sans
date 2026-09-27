@@ -3,9 +3,8 @@ import { ArrowRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/base/ui/button"
-import { getBlogPosts } from "@/features/portfolio/data/blog-posts"
-
-import { PostItem } from "./post-item"
+import { PostItem } from "@/features/blog/components/post-item"
+import { getBlogPosts } from "@/features/doc/data/documents"
 import {
   Panel,
   PanelHeader,

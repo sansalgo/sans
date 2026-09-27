@@ -7,6 +7,11 @@ export type DocMetadata = {
    */
   image?: string
   /**
+   * Dark-mode variant of `image`, shown in post cards when the dark theme is
+   * active. Social previews always use `image`.
+   */
+  imageDark?: string
+  /**
    * Category identifier, derived from the doc's content subfolder
    * (e.g. `content/components/*` → "components"). Not declared in frontmatter;
    * injected when docs are read. Used for filtering (see getDocsByCategory).

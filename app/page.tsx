@@ -52,9 +52,8 @@ export default function HomePage() {
           <Components />
           <Separator />
 
-          {/* Blog is hidden for now — uncomment to bring it back. */}
-          {/* <Blog />
-          <Separator /> */}
+          <Blog />
+          <Separator />
 
           <TechStack />
           <Separator />

@@ -39,6 +39,13 @@ import { CodeTabs } from "@/components/code-tabs"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import { Heading } from "@/components/heading"
+import {
+  BlockFigure,
+  BlockGlyph,
+  BlockSpecs,
+  NameSplit,
+} from "@/features/blog/components/block-letters"
+import { ThemeImage } from "@/features/blog/components/theme-image"
 import { AutoTypeTable } from "@/features/doc/components/auto-type-table"
 
 import { mdxCodeBlockComponents } from "./mdx-code-block"
@@ -63,6 +70,11 @@ const components: MDXRemoteProps["components"] = {
   CodeCollapsibleWrapper,
   CodeTabs,
   Callout,
+  BlockFigure,
+  BlockGlyph,
+  BlockSpecs,
+  NameSplit,
+  ThemeImage,
   Steps: ({ className, ...props }: React.ComponentProps<"div">) => (
     <div
       className={cn(
