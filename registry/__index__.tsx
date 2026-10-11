@@ -13,18 +13,13 @@ export const Index: Record<string, any> = {
   "claude-spinner": {
     name: "claude-spinner",
     description:
-      "A reverse-engineered recreation of the Claude Code CLI's terminal spinner — animated glyph, status verb, elapsed time, and token counter.",
+      "A reverse-engineered recreation of the Claude Code CLI's terminal spinner — animated glyph, status label, elapsed time, and token counter.",
     type: "registry:ui",
     files: [
       {
         path: "registry/components/claude-spinner/claude-spinner.tsx",
         type: "registry:ui",
         target: "",
-      },
-      {
-        path: "registry/components/claude-spinner/claude-spinner.css",
-        type: "registry:file",
-        target: "components/ui/claude-spinner.css",
       },
     ],
     component: React.lazy(async () => {
