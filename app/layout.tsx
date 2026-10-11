@@ -85,8 +85,31 @@ export const metadata: Metadata = {
     creator: X_HANDLE,
     images: [SITE_INFO.ogImage],
   },
-  // Uses the auto-detected app/favicon.ico by default. Add your own
-  // favicon/apple-touch-icon files under app/ or public/ when ready.
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "32x32",
+      },
+      {
+        url: "/favicon.svg",
+        sizes: "any",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark.svg",
+        sizes: "any",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: {
+      url: "/apple-touch-icon.png",
+      type: "image/png",
+      sizes: "180x180",
+    },
+  },
 }
 
 export const viewport: Viewport = {
