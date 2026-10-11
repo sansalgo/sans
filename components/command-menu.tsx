@@ -22,10 +22,10 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useHotkeys } from "react-hotkeys-hook"
-import { toast } from "sonner"
 
 import { trackEvent } from "@/lib/events"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
+import { toast } from "@/components/base/ui/toast"
 import {
   CommandDialog,
   CommandEmpty,
@@ -220,7 +220,7 @@ export function CommandMenu({
           text: text,
         },
       })
-      toast.success(message)
+      toast.add({ type: "success", title: message })
     },
     []
   )

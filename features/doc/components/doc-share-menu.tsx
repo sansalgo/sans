@@ -2,7 +2,6 @@
 
 import { copyText } from "@/utils/copy"
 import { EllipsisIcon, LinkIcon, ShareIcon } from "lucide-react"
-import { toast } from "sonner"
 
 import { Button } from "@/components/base/ui/button"
 import {
@@ -11,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/base/ui/dropdown-menu"
+import { toast } from "@/components/base/ui/toast"
 import { LinkedInIcon, XIcon } from "@/components/icons"
 
 export function DocShareMenu({ title, url }: { title: string; url: string }) {
@@ -46,7 +46,7 @@ export function DocShareMenu({ title, url }: { title: string; url: string }) {
         <DropdownMenuItem
           onClick={() => {
             copyText(absoluteUrl)
-            toast.success("Link copied")
+            toast.add({ type: "success", title: "Link copied" })
           }}
         >
           <LinkIcon />

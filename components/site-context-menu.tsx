@@ -2,7 +2,6 @@
 
 import { copyText } from "@/utils/copy"
 import { Type } from "lucide-react"
-import { toast } from "sonner"
 
 import {
   ContextMenu,
@@ -10,6 +9,7 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/base/ui/context-menu"
+import { toast } from "@/components/base/ui/toast"
 
 import { getMarkSVG, SiteMark } from "./site-mark"
 import { getWordmarkSVG } from "./site-wordmark"
@@ -23,7 +23,7 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
         <ContextMenuItem
           onClick={() => {
             copyText(getMarkSVG())
-            toast.success("Mark as SVG copied")
+            toast.add({ type: "success", title: "Mark as SVG copied" })
           }}
         >
           <SiteMark />
@@ -33,7 +33,7 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
         <ContextMenuItem
           onClick={() => {
             copyText(getWordmarkSVG())
-            toast.success("Logotype as SVG copied")
+            toast.add({ type: "success", title: "Logotype as SVG copied" })
           }}
         >
           <Type />

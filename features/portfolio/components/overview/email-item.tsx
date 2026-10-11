@@ -5,10 +5,10 @@ import { copyToClipboardWithEvent } from "@/utils/copy"
 import { decodeEmail } from "@/utils/string"
 import { MailIcon } from "lucide-react"
 import { useHotkeys } from "react-hotkeys-hook"
-import { toast } from "sonner"
 
 import { trackEvent } from "@/lib/events"
 import { useIsClient } from "@/hooks/use-is-client"
+import { toast } from "@/components/base/ui/toast"
 import { CopyButton } from "@/components/copy-button"
 
 import {
@@ -36,7 +36,7 @@ export function EmailItem({ emailB64 }: EmailItemProps) {
         key: "shift+e",
       },
     })
-    toast.success("Email copied")
+    toast.add({ type: "success", title: "Email copied" })
   })
 
   return (
